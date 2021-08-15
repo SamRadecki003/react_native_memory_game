@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import Card from "./Card";
 import {
   StyleSheet,
@@ -73,17 +73,80 @@ const cardsArray = [
   //   img: "../assests/love.png",
   //   id: 12,
   // },
+  {
+    name: "soccer",
+    img: "../assests/soccer.png",
+    id: 13,
+    faceUp: false,
+  },
+  {
+    name: "tennis",
+    img: "../assests/tennis.png",
+    id: 14,
+    faceUp: false,
+  },
+  // {
+  //   name: "basketball",
+  //   img: "../assests/basketball.png",
+  //   id: 15,
+  // },
+  // {
+  //   name: "butterfly",
+  //   img: "../assests/butterfly.png",
+  //   id: 16,
+  // },
+  // {
+  //   name: "cat",
+  //   img: "../assests/cat.png",
+  //   id: 17,
+  // },
+  // {
+  //   name: "dog",
+  //   img: "../assests/dog.png",
+  //   id: 18,
+  // },
+  // {
+  //   name: "golf",
+  //   img: "../assests/golf.png",
+  //   id: 19,
+  // },
+  // {
+  //   name: "hockey",
+  //   img: "../assests/hockey.png",
+  //   id: 20,
+  // },
+  // {
+  //   name: "volleyball",
+  //   img: "../assests/volleyball.png",
+  //   id: 21,
+  // },
+  // {
+  //   name: "zzz",
+  //   img: "../assests/zzz.png",
+  //   id: 22,
+  // },
+  // {
+  //   name: "sandwhich",
+  //   img: "../assests/sandwhich.png",
+  //   id: 23,
+  // },
+  // {
+  //   name: "love",
+  //   img: "../assests/love.png",
+  //   id: 24,
+  // },
 ];
 
 class Board extends React.Component {
   constructor() {
     super();
     const deck = cardsArray
-      .concat(cardsArray) //adds two
+      // .concat(cardsArray) //adds two
       .sort(() => 0.75 - Math.random()); //randonly sorts them
 
     this.state = {
       deck: deck,
+      // faceUp: false,
       // firstCard: null,
     };
     // this.renderItem = this.renderItem.bind(this);
@@ -91,10 +154,36 @@ class Board extends React.Component {
 
   render() {
     const flipCardTo = (item) => {
-      console.log(item.faceUp);
-      item.faceUp = !item.faceUp;
+      console.log("-------------------------"),
+        console.log("item pressed", item),
+        console.log("-------------------------"),
+        // console.log("this.state", this.state),
+        this.setState({
+          deck: this.state.deck.map((card, index) => {
+            // console.log("-------------------------"),
+            //   console.log("card in this.state", card),
+            //   console.log("-------------------------");
+            if (card.id === item.id) {
+              item.faceUp = !item.faceUp;
+              return card;
+            } else {
+              return card;
+            }
+          }),
+        });
+
       console.log("FLIPPED!!");
       console.log(item.faceUp);
+      // this.setState({
+      //   deck: this.state.deck.map((card, idex) => {
+      //     if (index === item.id) {
+      //       return {
+      //         card: card.card,
+      //         faceUp: !faceUp
+      //       };
+      //     }
+      //   }),
+      // });
     };
     const renderItem = ({ item }) => (
       //console.log("item from renderItem", item),
