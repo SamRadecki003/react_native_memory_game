@@ -90,20 +90,25 @@ class Board extends React.Component {
   }
 
   render() {
-    const flipCardTo = ({ item }) => {
-      console.log(item);
+    const flipCardTo = (item) => {
+      console.log(item.faceUp);
+      item.faceUp = !item.faceUp;
       console.log("FLIPPED!!");
+      console.log(item.faceUp);
     };
     const renderItem = ({ item }) => (
-      <View>
-        {item.faceUp ? (
-          <Text style={styles.card}>
-            {item.name} and {item.id}
-          </Text>
-        ) : (
-          <Text style={styles.card}>???</Text>
-        )}
-      </View>
+      //console.log("item from renderItem", item),
+      <TouchableWithoutFeedback onPress={() => flipCardTo(item)}>
+        <View>
+          {item.faceUp ? (
+            <Text style={styles.card}>
+              {item.name} and {item.id}
+            </Text>
+          ) : (
+            <Text style={styles.card}>???</Text>
+          )}
+        </View>
+      </TouchableWithoutFeedback>
     );
 
     const deck = this.state.deck;
@@ -114,7 +119,6 @@ class Board extends React.Component {
           keyExtractor={(key) => key.id} //created the key
           data={deck}
           renderItem={renderItem}
-          onPress={flipCardTo}
         />
       </View>
     );
