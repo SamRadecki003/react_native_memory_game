@@ -14,128 +14,128 @@ import {
 const cardsArray = [
   {
     name: "soccer",
-    img: "",
+    img: require("./../assets/soccer.png"),
     id: 1,
     faceUp: false,
   },
   {
     name: "tennis",
-    img: "",
+    img: require("./../assets/tennis.png"),
     id: 2,
     faceUp: false,
   },
-  // {
-  //   name: "basketball",
-  //   img: "",
-  //   id: 3,
-  // },
-  // {
-  //   name: "butterfly",
-  //   img: "",
-  //   id: 4,
-  // },
-  // {
-  //   name: "cat",
-  //   img: "",
-  //   id: 5,
-  // },
-  // {
-  //   name: "dog",
-  //   img: "",
-  //   id: 6,
-  // },
-  // {
-  //   name: "golf",
-  //   img: "",
-  //   id: 7,
-  // },
-  // {
-  //   name: "hockey",
-  //   img: "",
-  //   id: 8,
-  // },
-  // {
-  //   name: "volleyball",
-  //   img: "",
-  //   id: 9,
-  // },
-  // {
-  //   name: "zzz",
-  //   img: "",
-  //   id: 10,
-  // },
-  // {
-  //   name: "sandwhich",
-  //   img: "",
-  //   id: 11,
-  // },
-  // {
-  //   name: "love",
-  //   img: "",
-  //   id: 12,
-  // },
+  {
+    name: "basketball",
+    img: require("./../assets/basketball.png"),
+    id: 3,
+  },
+  {
+    name: "butterfly",
+    img: require("./../assets/butterfly.png"),
+    id: 4,
+  },
+  {
+    name: "cat",
+    img: require("./../assets/cat.png"),
+    id: 5,
+  },
+  {
+    name: "dog",
+    img: require("./../assets/dog.png"),
+    id: 6,
+  },
+  {
+    name: "golf",
+    img: require("./../assets/golf.png"),
+    id: 7,
+  },
+  {
+    name: "hockey",
+    img: require("./../assets/hockey.png"),
+    id: 8,
+  },
+  {
+    name: "volleyball",
+    img: require("./../assets/volleyball.png"),
+    id: 9,
+  },
+  {
+    name: "zzz",
+    img: require("./../assets/zzz.png"),
+    id: 10,
+  },
+  {
+    name: "sandwhich",
+    img: require("./../assets/sandwhich.png"),
+    id: 11,
+  },
+  {
+    name: "love",
+    img: require("./../assets/love.png"),
+    id: 12,
+  },
   {
     name: "soccer",
-    img: "",
+    img: require("./../assets/soccer.png"),
     id: 13,
     faceUp: false,
   },
   {
     name: "tennis",
-    img: "",
+    img: require("./../assets/tennis.png"),
     id: 14,
     faceUp: false,
   },
-  // {
-  //   name: "basketball",
-  //   img: "",
-  //   id: 15,
-  // },
-  // {
-  //   name: "butterfly",
-  //   img: "",
-  //   id: 16,
-  // },
-  // {
-  //   name: "cat",
-  //   img: "",
-  //   id: 17,
-  // },
-  // {
-  //   name: "dog",
-  //   img: "",
-  //   id: 18,
-  // },
-  // {
-  //   name: "golf",
-  //   img: "",
-  //   id: 19,
-  // },
-  // {
-  //   name: "hockey",
-  //   img: "",
-  //   id: 20,
-  // },
-  // {
-  //   name: "volleyball",
-  //   img: "",
-  //   id: 21,
-  // },
-  // {
-  //   name: "zzz",
-  //   img: "",
-  //   id: 22,
-  // },
-  // {
-  //   name: "sandwhich",
-  //   img: "",
-  //   id: 23,
-  // },
-  // {
-  //   name: "love",
-  //   img: "",
-  //   id: 24,
-  // },
+  {
+    name: "basketball",
+    img: require("./../assets/basketball.png"),
+    id: 15,
+  },
+  {
+    name: "butterfly",
+    img: require("./../assets/butterfly.png"),
+    id: 16,
+  },
+  {
+    name: "cat",
+    img: require("./../assets/cat.png"),
+    id: 17,
+  },
+  {
+    name: "dog",
+    img: require("./../assets/dog.png"),
+    id: 18,
+  },
+  {
+    name: "golf",
+    img: require("./../assets/golf.png"),
+    id: 19,
+  },
+  {
+    name: "hockey",
+    img: require("./../assets/hockey.png"),
+    id: 20,
+  },
+  {
+    name: "volleyball",
+    img: require("./../assets/volleyball.png"),
+    id: 21,
+  },
+  {
+    name: "zzz",
+    img: require("./../assets/zzz.png"),
+    id: 22,
+  },
+  {
+    name: "sandwhich",
+    img: require("./../assets/sandwhich.png"),
+    id: 23,
+  },
+  {
+    name: "love",
+    img: require("./../assets/love.png"),
+    id: 24,
+  },
 ];
 
 class Board extends React.Component {
@@ -146,6 +146,7 @@ class Board extends React.Component {
     this.state = {
       deck: deck,
       firstCard: null,
+      secondCard: null,
     };
   }
 
@@ -161,18 +162,45 @@ class Board extends React.Component {
           }
         }),
       });
-    };
-
-    const flip = (item) => {
       if (this.state.firstCard === null) {
-        console.log("item in flip function", item);
-        console.log("---------------------");
-        console.log("this.state,firstCard", this.state.firstCard);
         this.setState({ firstCard: item });
-        console.log("---------------------");
-        console.log("firstCard changed to....?", this.state.firstCard);
       } else {
-        console.log("went into else statement");
+        const firstCard = this.state.firstCard;
+        const secondCard = item;
+        this.setState({ secondCard: item });
+
+        if (firstCard.name === secondCard.name) {
+          this.setState({ firstCard: null });
+          this.setState({ secondCard: null });
+          console.log("SAME!");
+        } else {
+          console.log(this.state);
+          setTimeout(() => {
+            this.setState({ firstCard: null });
+
+            this.setState({
+              deck: this.state.deck.map((card) => {
+                if (card.id === firstCard.id) {
+                  firstCard.faceUp = !firstCard.faceUp;
+                  return card;
+                } else {
+                  return card;
+                }
+              }),
+            });
+            this.setState({
+              deck: this.state.deck.map((card) => {
+                if (card.id === item.id) {
+                  item.faceUp = !item.faceUp;
+                  return card;
+                } else {
+                  return card;
+                }
+              }),
+            });
+          }, 1000);
+          console.log("Diffferent");
+        }
       }
     };
 
@@ -181,11 +209,10 @@ class Board extends React.Component {
         <View>
           {item.faceUp ? (
             <View>
-              {/* <Image source={require("")} /> */}
-              <Text style={styles.card}>{item.name}</Text>
+              <Image style={styles.image} source={item.img} />
             </View>
           ) : (
-            <Text style={styles.card}>???</Text>
+            <Text style={styles.card}>?</Text>
           )}
         </View>
       </TouchableWithoutFeedback>
@@ -217,7 +244,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 10,
     backgroundColor: "pink",
-    fontSize: 10,
+    fontSize: 60,
+    textAlign: "center",
+    marginHorizontal: 10,
+    height: 90,
+    width: 100,
+  },
+  image: {
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: "white",
     marginHorizontal: 10,
     height: 90,
     width: 100,
